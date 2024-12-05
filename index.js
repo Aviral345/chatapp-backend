@@ -14,6 +14,9 @@ app.use(express.json());
 
 const MONGO_URI = 'mongodb+srv://aviralnitish345:oHuSnQRxdE34A71M@cluster0.l76tg.mongodb.net/'
 // Routes
+app.get('/',() =>{
+  res.send('server is runing')
+})
 app.use('/api/auth', authRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/api/message',messageRoutes)
