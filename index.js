@@ -4,9 +4,17 @@ const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes');
 const groupRoutes = require('./routes/groupRoutes');
 const messageRoutes = require('./routes/messagesRoutes');
+const cors =require('cors')
 
 dotenv.config();
 const app = express();
+app.use(cors(
+  {
+    origin:'https://chatappp-frontend.vercel.app',
+    methods:['GET','POST','PUT','DELETE'],
+    allowedHeaders:['Content-Type','Authorization']
+  }
+))
 
 // Middleware
 app.use(express.json());
@@ -14,9 +22,9 @@ app.use(express.json());
 
 const MONGO_URI = 'mongodb+srv://aviralnitish345:oHuSnQRxdE34A71M@cluster0.l76tg.mongodb.net/'
 // Routes
-// app.get('/',() =>{
-//   res.send('server is runing')
-// })
+app.get('/',(req,res) =>{
+  res.send("server is runing")
+})
 app.use('/api/auth', authRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/api/message',messageRoutes)
